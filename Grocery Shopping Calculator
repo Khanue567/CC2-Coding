@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class GroceryShoppingCalculator {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Declaration
+        double price1;
+        int quantity1;
+        double price2;
+        int quantity2;
+        double price3;
+        int quantity3;
+
+        // Get the price of item 1.
+        System.out.print("Enter the price of item 1: ");
+        price1 = input.nextDouble(); 
+
+        // Get the total of item 1.
+        System.out.print("Enter the quantity of item 1: ");
+        quantity1 = input.nextInt();
+
+        // Get the price of item 2.
+        System.out.print("Enter the price of item 2: ");
+        price2 = input.nextDouble();
+
+        // Get the total of item 2.
+        System.out.print("Enter the quantity of item 2: ");
+        quantity2 = input.nextInt();
+
+        // Get the price of item 3.
+        System.out.print("Enter the price of item 3: ");
+        price3 = input.nextDouble();
+
+        // Get the total of item 3.
+        System.out.print("Enter the quantity of item 3: ");
+        quantity3 = input.nextInt();
+
+        // Calculate the subtotal
+        double subtotal = (price1 * quantity1) + (price2 * quantity2) + (price3 * quantity3);
+        System.out.println("Subtotal: PHP " + subtotal);
+
+        // Calculate the discount (5%)
+        double discount = subtotal * 0.05;
+        double discountedSubtotal = subtotal - discount;
+        System.out.println("Discount: PHP " + discount);
+
+        // Calculate the tax (12% of the discounted subtotal)
+        double tax = discountedSubtotal * 0.12;
+        System.out.println("Sales Tax: PHP " + tax);
+
+        // Calculate the final total of the grocery
+        double finalTotal = discountedSubtotal + tax;
+        System.out.println("Final Total: PHP " + finalTotal);
+    }
+}
