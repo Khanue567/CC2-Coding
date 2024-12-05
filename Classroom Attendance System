@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class ClassroomAttendanceSystem {
+    public static void main(String[] args) {
+        // Create a Scanner object to get input from the user
+        Scanner attendance = new Scanner(System.in);
+        
+        // totalNumberOfStudents will store the total number of students entered by the user.
+        // answers will hold the input (Y/N) for whether a student is present or absent.
+        int totalNumberOfStudents, presentCount = 0, absentCount = 0, i;
+        String answers;
+       
+        // Ask the user to input the total number of students in the class.
+        System.out.print("Enter the total number of students: ");
+        totalNumberOfStudents = attendance.nextInt();  // Read the total number of students
+        attendance.nextLine(); // Consume the newline character left by nextInt()
+       
+        // Loop through each student from 1 to totalNumberOfStudents
+        for (i = 1; i <= totalNumberOfStudents; i++) {
+            // Ask if the current student (i) is present or absent
+            System.out.print("Is student " + i + " present? (Y/N): ");
+            answers = attendance.nextLine();  // Read the input (Y or N)
+            
+            // Use switch to process the input (Y or N) for the current student
+            switch (answers) {
+                case "Y":  // If the input is 'Y', increment the presentCount
+                    presentCount++;
+                    break;
+                case "N":  // If the input is 'N', increment the absentCount
+                    absentCount++;
+                    break;
+                default:  // If the input is invalid (not Y or N), print an error message
+                    System.out.println("Invalid input, please enter Y or N.");
+                    i--;  // Decrease the counter to repeat the attendance for this student
+                    break;
+            }
+        }
+       
+        // After the loop, display the total number of students present and absent
+        System.out.println("Total present: " + presentCount);
+        System.out.println("Total absent: " + absentCount);
+        // Close the scanner object to prevent resource leaks
+        attendance.close();
+    }
+}
