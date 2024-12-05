@@ -1,0 +1,105 @@
+/*
+Author: Dulnuan, Khane Jay T.
+Class: CC2 1B
+Date: Nov 20, 2024
+*/
+
+
+import java.util.Scanner;
+
+// non user input
+
+public class RetailStoreInventoryManagemen {
+
+    /**
+     * The RetailStoreInventoryManagement program calculates the total value of a retail store's inventory
+     * based on predefined quantity and price values for 10 different products.
+     * 
+     * The program computes the total inventory value by multiplying the quantity of each product 
+     * by its price and summing up the results for all products.
+     * 
+     * After calculating the total value, it displays the result in a formatted output.
+     */
+
+    public static void main(String[] args) {
+
+        // Predefined arrays to store the quantity and price of each product
+        int[] stockQuantities = {20, 15, 30, 18, 10, 35, 25, 2, 70, 50};   // Predefined quantities for 10 products
+        double[] productPrices = {10.99, 20.49, 14.99, 11.99, 32.49, 25.99, 7.99, 15.99, 29.49, 50.99};  // Predefined prices for 10 products
+
+        // Step 2: Calculate the total value of the inventory by multiplying quantity and price for each product
+        double totalInventoryValue = 0;  // Variable to accumulate the total value of all products in stock
+
+        // Loop through each product and calculate the total value for each one
+        for (int i = 0; i < 10; i++) {
+            totalInventoryValue += stockQuantities[i] * productPrices[i];  // Multiply quantity by price and accumulate
+        }
+
+        // Step 3: Output the total value of the inventory to the user, formatted to 2 decimal places
+        System.out.printf("\nThe total value of the store's inventory is: $%.2f\n", totalInventoryValue);
+    }
+}
+
+
+
+
+import java.util.Scanner;
+
+//user input
+
+
+/**
+     * The RetailStoreInventoryManagement program calculates the total value of a retail store's inventory
+     * based on user input for the quantity and price of 10 different products.
+     * 
+     * The program prompts the user to enter:
+     * 1. The quantity of each product in stock.
+     * 2. The price of each product.
+     * 
+     * The program then computes the total inventory value by multiplying the quantity of each product 
+     * by its price and summing up the results for all products.
+     * 
+     * After calculating the total value, it displays the result in a formatted output.
+     * 
+     * The program uses a Scanner object to receive input from the user and arrays to store the quantities 
+     * and prices of the products.
+     */
+
+public class RetailStoreInventoryManagement {
+
+
+    public static void main(String[] args) {
+
+        // Declare arrays to store the quantity and price of each product
+        int[] stockQuantities = new int[10];   // Array to store the quantity of each product (10 products)
+        double[] productPrices = new double[10];  // Array to store the price of each product (10 products)
+
+        // Create Scanner object to get input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Loop through each product and prompt the user for its quantity and price
+        for (int i = 0; i < 10; i++) {
+            // Prompt user for quantity of the current product
+            System.out.print("Enter quantity for Product " + (i + 1) + ": ");
+            stockQuantities[i] = scanner.nextInt();  // Store the input quantity in the stockQuantities array
+
+            // Prompt user for price of the current product
+            System.out.print("Enter price for Product " + (i + 1) + ": $");
+            productPrices[i] = scanner.nextDouble();  // Store the input price in the productPrices array
+        }
+
+        // Step 2: Calculate the total value of the inventory by multiplying quantity and price for each product
+        double totalInventoryValue = 0;  // Variable to accumulate the total value of all products in stock
+
+        // Loop through each product and calculate the total value for each one
+        for (int i = 0; i < 10; i++) {
+            totalInventoryValue += stockQuantities[i] * productPrices[i];  // Multiply quantity by price and accumulate
+        }
+
+        // Step 3: Output the total value of the inventory to the user, formatted to 2 decimal places
+        System.out.printf("\nThe total value of the store's inventory is: $%.2f\n", totalInventoryValue);
+
+        // Close the Scanner object to prevent resource leak (best practice)
+        scanner.close();
+    }
+}
