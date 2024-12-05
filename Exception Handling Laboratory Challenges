@@ -1,0 +1,48 @@
+/**
+ *
+ * @author Dulnuan, Khane Jay T.
+ * Date: 12/4/24
+ * Section: CITCS 1B
+ * Subject: CC2
+ */
+import java.util.Scanner;
+
+// Custom Exception for Insufficient Funds
+class InsufficientFundsException extends Exception {
+    // Constructor for custom exception message
+    public InsufficientFundsException(String message) {
+        super(message); // Pass the message to the Exception class
+    }
+}
+
+public class BankingSystem {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // Scanner to take user input
+        double balance = 1000.00; // Initial balance of $1000
+        
+        System.out.println("Welcome to the Bank!");
+
+        try {
+            // Ask user to input the withdrawal amount
+            System.out.print("Enter the amount you want to withdraw: $");
+            double withdrawalAmount = scanner.nextDouble();
+            
+            // Attempt to withdraw the specified amount
+            if (withdrawalAmount > balance) {
+                // If withdrawal amount exceeds balance, throw an exception
+                throw new InsufficientFundsException("Withdrawal failed! You tried to withdraw $" + String.format("%,.2f", withdrawalAmount) + ", but your balance is only $" + String.format("%,.2f", balance) + ".");
+            }
+            
+            // If withdrawal is successful, update the balance
+            balance -= withdrawalAmount;
+            System.out.println("Withdrawal successful! Remaining balance: $" + String.format("%,.2f", balance));
+        } catch (InsufficientFundsException e) {
+            System.out.println(e.getMessage()); // Handle the Insufficient Funds Exception
+        } catch (Exception e) {
+            System.out.println("Invalid input! Please enter a valid number.");
+        } finally {
+        
+        }
+    }
+}
