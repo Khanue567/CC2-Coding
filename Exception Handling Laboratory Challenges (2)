@@ -1,0 +1,75 @@
+/**
+ *
+ * @author Dulnuan, Khane Jay T.
+ * Date: 12/4/24
+ * Section: CITCS 1B
+ * Subject: CC2
+ */
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+// An exception class for the invalid product quantity
+class InvalidQuantityException extends Exception {
+    public InvalidQuantityException(String message) {
+        super(message); // Call the class with a message
+    }
+}
+
+public class ShoppingCart {
+    private int getAvailableStock() {
+        return 100; // Return the total stock available
+    }
+
+    // Method to add items to the cart
+    public void addItem(int quantity) throws InvalidQuantityException {
+        int availableStock = getAvailableStock(); // Get the available stock
+
+        // Check if the quantity is negative
+        if (quantity < 0) {
+            throw new InvalidQuantityException("Oops! The quantity cannot be negative. Please enter a valid number.");
+        }
+        // Check if the quantity exceeds available stock
+        else if (quantity > availableStock) {
+            throw new InvalidQuantityException("Sorry, we only have " + availableStock + " items in stock. Please enter a smaller quantity.");
+        } 
+        // If quantity is valid, please confirm addition
+        else {
+            System.out.println("Great! You've successfully added " + quantity + " item(s) to your cart.");
+        }
+    }
+
+    // Main method of the program
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // Create a scanner for user input
+        ShoppingCart cart = new ShoppingCart(); // Create a new shopping cart
+
+        while (true) {
+            System.out.println("\n--- Welcome to Khen's Online Shopping Cart ---");
+            System.out.print("Please enter a quantity of the product that you like to add to your cart (or type Exit to exit): ");
+            
+            String input = scanner.nextLine(); // Read the input as a String
+
+            // Check if user wants to exit
+            if (input.equalsIgnoreCase("Exit")) {
+                System.out.println("Thank you for shopping with us! Have a great beautiful day!");
+                break; // Exit the loop
+            }
+
+            try {
+                int quantity = Integer.parseInt(input); // Try to parse the input to an integer
+
+                // Trying to add an item to the cart
+                cart.addItem(quantity);
+            } catch (NumberFormatException e) {
+                // Handle invalid input type
+                System.out.println("Error: Please enter a valid integer for the quantity.");
+            } catch (InvalidQuantityException e) {
+                // Prints an error message
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+
+        scanner.close(); // Close the scanner
+    }
+}
