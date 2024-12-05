@@ -1,0 +1,25 @@
+public class Invoice {
+    public static void main(String[] args) {
+        // Store Information
+        System.out.println(" \"Khane's Store\" \nBaguio City Purok 1 Kias");
+        System.out.println("___________________________________________");
+
+        // Itemized List
+        System.out.println("Item\tQuantity\tPrice");
+        System.out.println("___________________________________________");
+        System.out.println("Apple\t\t1\t\t₱25.00");
+        System.out.println("Banana\t\t3\t\t₱27.00");
+        System.out.println("Orange\t\t1\t\t₱20.00");
+        System.out.println("___________________________________________");
+        
+
+        // Total Amount
+        System.out.print("Total: ");
+        System.out.println("₱72.00");
+
+        // Additional Notes
+        System.out.println("\n___________________________________________");
+        System.out.println("Thank you for shopping at \"Khane's Store!\"");
+        System.out.println("___________________________________________");
+    }
+}
