@@ -1,0 +1,121 @@
+import java.util.Scanner; 
+/* Author: Dulnuan, Khane Jay T.
+Section: CITCS 1B
+Subject: CC2
+Date: Dec 4 2024
+*/
+
+public class Playlist {
+
+    // Node class to represent a song in the playlist
+    static class SongNode {
+        String songName;  // Song name
+        SongNode next;    // Pointer to the next song
+        SongNode prev;    // Pointer to the previous song
+
+        // Constructor to create a new song node
+        public SongNode(String songName) {
+            this.songName = songName; // Assign song name
+            this.next = this.prev = null; // Initialize pointers to null
+        }
+    }
+
+    // Head of the circular doubly linked list (playlist)
+    private static SongNode head = null;
+
+    // Method to add a song to the playlist
+    public static void addSong(String songName) {
+        SongNode newSong = new SongNode(songName); // Create a new song node
+
+        if (head == null) { // If the playlist is empty
+            head = newSong;  // Make the new song the head
+            head.next = head; // Point next to itself (circular)
+            head.prev = head; // Point prev to itself (circular)
+        } else { // If the playlist is not empty
+            SongNode last = head.prev; // Get the last song in the playlist
+            last.next = newSong; // Link the last song to the new song
+            newSong.prev = last; // Link the new song back to the last song
+            newSong.next = head; // Make the new song point to the head (circular)
+            head.prev = newSong; // Make the head point back to the new song (circular)
+        }
+        System.out.println("Added song: " + songName); // Display song added message
+    }
+
+    // Method to remove a song from the playlist
+    public static void removeSong(String songName) {
+        if (head == null) { // If the playlist is empty
+            System.out.println("Playlist is empty."); // Display message and return
+            return;
+        }
+
+        SongNode current = head; // Start from the head of the playlist
+        do {
+            if (current.songName.equals(songName)) { // If the song is found
+                if (current == head && current.next == head) { // If only one song is left
+                    head = null; // Set head to null (empty playlist)
+                } else { // If more than one song
+                    current.prev.next = current.next; // Link previous song to next
+                    current.next.prev = current.prev; // Link next song to previous
+                    if (current == head) { // If the song to remove is the head
+                        head = current.next; // Make the next song the new head
+                    }
+                }
+                System.out.println("Removed song: " + songName); // Display song removed message
+                return;
+            }
+            current = current.next; // Move to the next song
+        } while (current != head); // Keep searching until we loop back to the head
+
+        System.out.println("Song not found."); // Display message if song is not found
+    }
+
+    // Method to display the current song (head of the playlist)
+    public static void displayCurrentSong() {
+        if (head == null) { // If the playlist is empty
+            System.out.println("Playlist is empty."); // Display message
+        } else {
+            System.out.println("Now playing: " + head.songName); // Display the current song
+        }
+    }
+
+    // Main method with user input via Scanner
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // Create Scanner object for input
+
+        // Infinite loop to keep showing the menu until the user decides to exit
+        while (true) {
+            // Display the menu
+            System.out.println("\n--- Playlist Menu ---");
+            System.out.println("1. Add song");
+            System.out.println("2. Remove song");
+            System.out.println("3. Display current song");
+            System.out.println("4. Exit");
+
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt(); // Read user's menu choice
+            scanner.nextLine(); // Consume the newline left by nextInt()
+
+            switch (choice) { // Switch based on user's choice
+                case 1: // Add song
+                    System.out.print("Enter song name to add: ");
+                    String addSongName = scanner.nextLine(); // Read song name
+                    addSong(addSongName); // Add song to the playlist
+                    break;
+                case 2: // Remove song
+                    System.out.print("Enter song name to remove: ");
+                    String removeSongName = scanner.nextLine(); // Read song name to remove
+                    removeSong(removeSongName); // Remove song from the playlist
+                    break;
+                case 3: // Display current song
+                    displayCurrentSong(); // Show the current song playing
+                    break;
+                case 4: // Exit
+                    System.out.println("Exiting playlist..."); // Show exit message
+                    scanner.close(); // Close the scanner
+                    return; // Exit the program
+                default: // Invalid input
+                    System.out.println("Invalid choice! Please try again."); // Display error message
+            }
+        }
+    }
+}
