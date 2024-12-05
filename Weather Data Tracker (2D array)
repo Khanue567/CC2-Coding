@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+/**
+ * WeatherDataTracker program
+ * This program tracks daily temperature data for 3 cities over 7 days.
+ * It calculates the average temperature and the highest temperature 
+ * recorded for each city.
+ */
+public class WeatherDataTracker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // store the temperatures for 3 cities and 7 days
+        double[][] temperatures = new double[3][7];
+
+        // Input temperatures for each city and each day
+        System.out.println("Enter temperatures for 3 cities over 7 days:");
+        for (int i = 0; i < 3; i++) { // i represents the city index
+            System.out.println("City " + (i + 1) + ":");
+            for (int j = 0; j < 7; j++) { // j represents the day index
+                System.out.print("Day " + (j + 1) + ": ");
+                temperatures[i][j] = scanner.nextDouble(); // Store the temperature
+            }
+        }
+
+        // Process data to calculate average and highest temperatures
+        for (int i = 0; i < 3; i++) { // Loop through each city
+            double total = 0; // To calculate total temperature for averaging
+            double highest = temperatures[i][0]; // Initialize highest temperature
+
+            for (int j = 0; j < 7; j++) { // Loop through each day for the city
+                total += temperatures[i][j]; // Add temperature to the total
+                if (temperatures[i][j] > highest) { // Check for the highest temperature
+                    highest = temperatures[i][j];
+                }
+            }
+
+            // Calculate average and display results
+            double average = total / 7;
+            System.out.printf("City %d - Average: %.2f, Highest: %.2f\n", i + 1, average, highest);
+        }
+
+        scanner.close(); // Close the scanner to release resources
+    }
+}
