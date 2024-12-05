@@ -1,0 +1,18 @@
+public class RectangularPerimeter{
+    public static void main(String[] args) {
+        // Given values
+        int length = 10; // meters
+        int width = 5; // meters
+
+        // Calculate area and perimeter
+        int area = length * width;
+        int perimeter = 2 * (length + width);
+
+        // Display results
+        System.out.println("Garden Dimensions:");
+        System.out.println("Length: " + length + " meters");
+        System.out.println("Width: " + width + " meters");
+        System.out.println("Area: " + area + " square meters");
+        System.out.println("Perimeter: " + perimeter + " meters");
+    }
+}
