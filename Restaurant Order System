@@ -1,0 +1,70 @@
+import java.util.Scanner; 
+
+public class RestaurantOrderSystem {
+    public static void main(String[] args) {
+        // Create Scanner object to read user input
+        Scanner order = new Scanner(System.in);
+        
+        // Declare variables for choice, quantity, and total amount
+        int choice, quantity, totalAmount = 0;
+        
+        // Display menu options
+        System.out.println("MENU");
+        System.out.println("1. Burger    - PHP 100");
+        System.out.println("2. Fries     - PHP 50");
+        System.out.println("3. Soda      - PHP 30");
+        System.out.println("4. Ice Cream - PHP 45");
+        System.out.println("5. Exit");
+        
+        // Ask the user to enter their choice from the menu
+        System.out.print("Enter the menu number of your choice: ");
+        choice = order.nextInt();  // Store the user's choice
+        
+        // Use a switch statement to handle each menu option
+        switch (choice) {
+            case 1:
+                // User chose Burger
+                System.out.print("Enter the quantity: ");
+                quantity = order.nextInt();  // Get the quantity
+                totalAmount = 100 * quantity;  // Calculate total for Burger
+                System.out.println("You ordered Burger.");
+                System.out.println("Total amount: " + totalAmount + " PHP");
+                break;
+            case 2:
+                // User chose Fries
+                System.out.print("Enter the quantity: ");
+                quantity = order.nextInt();  // Get the quantity
+                totalAmount = 50 * quantity;  // Calculate total for Fries
+                System.out.println("You ordered Fries.");
+                System.out.println("Total amount: " + totalAmount + " PHP");
+                break;
+            case 3:
+                // User chose Soda
+                System.out.print("Enter the quantity: ");
+                quantity = order.nextInt();  // Get the quantity
+                totalAmount = 30 * quantity;  // Calculate total for Soda
+                System.out.println("You ordered Soda.");
+                System.out.println("Total amount: " + totalAmount + " PHP");
+                break;
+            case 4:
+                // User chose Ice Cream
+                System.out.print("Enter the quantity: ");
+                quantity = order.nextInt();  // Get the quantity
+                totalAmount = 45 * quantity;  // Calculate total for Ice Cream
+                System.out.println("You ordered Ice Cream.");
+                System.out.println("Total amount: " + totalAmount + " PHP");
+                break;
+            case 5:
+                // User chose to exit
+                System.out.println("Exit");
+                break;
+            default:
+                // Invalid choice
+                System.out.println("Invalid choice. Please choose again.");
+                break;
+        }
+        
+        // Close the Scanner object
+        order.close();
+    }
+}
